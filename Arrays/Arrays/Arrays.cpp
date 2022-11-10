@@ -3,49 +3,53 @@
 #include <iostream>
 #include <windows.h>
 using namespace std;
-void FillRand(int arr[],const int n);
 void Print(int arr[], const int n);
-void Sum(int arr[], const int n);
-void Avg(int arr[], const int n);
-void minValueIn(int arr[], const int n);
-void maxValueIn(int arr[], const int n);
+double Avg(int arr[], const int n);
 void Sort(int arr[], const int n);
 void shiftRight(int arr[], const int n);
 void shiftLeft(int arr[], const int n);
 void UniqueRand(int arr[], const int n);
+void FillRand(int arr[], const int n, int manRand=0, int maxRand =100);
+int Sum(int arr[], const int n);
+int minValueIn(int arr[], const int n);
+int maxValueIn(int arr[], const int n);
 int main()
 {
 	setlocale(LC_ALL, "");
-	const int n = 10;
+	const int n = 5;
 	int arr[n];
-	int a = 0;
-	int b = 0;
-	FillRand(arr, n); //заполняет массив случайными числами в заданном диапазоне 
-	Print(arr, n); //выводит массив на экран
-	Sum(arr, n); //находит сумму массива
-	Avg(arr, n); //возвращает среднее-арифметическое элементов массива
-	minValueIn(arr, n);//возвращает минимальное значение из массива
-	maxValueIn(arr, n);//возвращает максимальное значение из массива
-	UniqueRand(arr, n);//заполнение случайными уникальными числами в заданном диапазоне
-
-
-	Sort (arr, n); //сортировка массива
+	
+	
+	//FillRand(arr, n); //заполняет массив случайными числами в заданном диапазоне 
+	//Print(arr, n); //выводит массив на экран
+	
+	
+	//UniqueRand(arr, n);//заполнение случайными уникальными числами в заданном диапазоне
+	FillRand(arr, n);
 	Print(arr, n); // вывод массива после сортировки 
-	shiftLeft(arr, n);
-	shiftRight(arr, n);
+	//shiftLeft(arr, n);
+	//shiftRight(arr, n);
+	cout << "Сумма элементов массива: " << Sum(arr, n) << endl;
+	cout << "Среднее арифметчиское массива: " << Avg(arr, n) << endl;
+	cout << "Минимальное число массива: " << minValueIn(arr, n) << endl;
+	cout << "Максимальное число массива: " << maxValueIn(arr, n) << endl;
+}
+void FillRand(int arr[], const int n, int minRand, int maxRand)
+{
+	if (minRand > maxRand)
+	{
+		int buffer = minRand;
+		minRand = maxRand;
+		maxRand = buffer;
+	}
+	if (minRand == maxRand)maxRand++;
+	for (int i = 0; i < n; i++)
+	{
+		arr[i] = rand() % (maxRand-minRand)+ minRand;
+	}
 }
 
-	void FillRand(int arr[], const int n)
-	{
-		cout << "---Заполняем массив случайными числами в заданном диапазоне---" << endl;
-		int a = 0;
-		int b = 0;
-		cout << "Введите начало диапазона: "; cin >> a; cout << "Введите окончание диапазона: "; cin >> b;
-		for (int i = 0; i < n; i++)
-		{
-			arr[i] = a + rand() % (b - a);
-		}
-	}
+	
 	void Print(int arr[], const int n)
 	{
 		for (int i = 0; i < n; i++)
@@ -55,44 +59,12 @@ int main()
 		cout << endl;
 	}
 	
-	void Sum(int arr[], const int n)
+	
+	double Avg(int arr[], const int n)
 	{
-		int Summa = 0;
-		for (int i = 0; i < n; i++)
-		{
-			Summa = Summa + arr[i];
-		}
-		cout << "Сумма элементов массива: " << Summa; cout << endl; cout << endl;
+		return (double)Sum(arr, n) / n;
 	}
-	void Avg(int arr[], const int n)
-	{
-		float Summa = 0;
-		for (int i = 0; i < n; i++)
-		{
-			Summa = Summa + arr[i];
-		}
-		cout << "Среднее-арифметическое массива: " << Summa / n; cout << endl; cout << endl; 
-	}
-	void minValueIn(int arr[], const int n)
-	{
-		int Min = arr[0]; int Max = arr[0];
-		for (int i = 0; i < n; i++)
-		{
-			if (Min > arr[i]) Min = arr[i];
-			if (Max < arr[i]) Max = arr[i];
-		}
-		cout << "Минимальное число массива: " << Min; cout << endl; cout << endl;
-	}
-	void maxValueIn(int arr[], const int n)
-	{
-		int Min = 0; int Max = 0;
-		for (int i = 0; i < n; i++)
-		{
-			if (Min > arr[i]) Min = arr[i];
-			if (Max < arr[i]) Max = arr[i];
-		}
-		cout << "Максимальное число массива: " << Max; cout << endl; cout << endl;
-	}
+	
 	void Sort(int arr[], const int n)
 	{
 		cout << "--Сортировка массива по возрастанию--" << endl;
@@ -184,4 +156,33 @@ int main()
 		cout << arr[i] << "\t";
 	}
 	cout << endl;
+	}
+	int Sum(int arr[], const int n)
+	{
+		int Sum = 0;
+		for (int i = 0; i < n; i++)
+		{
+			Sum += arr[i];
+		}
+		return Sum;
+	}
+	int minValueIn (int arr[], const int n)
+	{
+		int Min = arr[0]; int Max = arr[0];
+		for (int i = 0; i < n; i++)
+		{
+			if (Min > arr[i]) Min = arr[i];
+			if (Max < arr[i]) Max = arr[i];
+		}
+		return Min;
+	}
+	int maxValueIn(int arr[], const int n)
+	{
+		int Min = arr[0]; int Max = arr[0];
+		for (int i = 0; i < n; i++)
+		{
+			if (Min > arr[i]) Min = arr[i];
+			if (Max < arr[i]) Max = arr[i];
+		}
+		return Max;
 	}
