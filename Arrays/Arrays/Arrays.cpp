@@ -95,6 +95,7 @@ int main()
 	cout << "Минимальное число массива: " << minValueIn(crr, size) << endl;
 	cout << "Максимальное число массива: " << maxValueIn(crr, size) << endl;
 	cout << delimetr << endl;
+
 	int i_arr_2[ROWS][COLS];	
 	FillRand(i_arr_2, ROWS, COLS);
 	Print(i_arr_2, ROWS, COLS);
@@ -105,6 +106,7 @@ int main()
 	cout << "Минимальное число массива: " << minValueIn(i_arr_2, ROWS, COLS) << endl;
 	cout << "Максимальное число массива: " << maxValueIn(i_arr_2, ROWS, COLS) << endl;
 	cout << delimetr << endl;
+
 	double i_arr_3[ROWS][COLS];
 	FillRand(i_arr_3, ROWS, COLS);
 	Print(i_arr_3, ROWS, COLS);
@@ -115,6 +117,7 @@ int main()
 	cout << "Минимальное число массива: " << minValueIn(i_arr_3, ROWS, COLS) << endl;
 	cout << "Максимальное число массива: " << maxValueIn(i_arr_3, ROWS, COLS) << endl;
 	cout << delimetr << endl;
+
 	char i_arr_4[ROWS][COLS];
 	FillRand(i_arr_4, ROWS, COLS);
 	Print(i_arr_4, ROWS, COLS); 
